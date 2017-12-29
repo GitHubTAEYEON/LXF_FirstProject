@@ -15,9 +15,7 @@ public class TestBridge : MonoBehaviour {
         OpenGL ogl = new OpenGL();
         Cylinder cy = new Cylinder(ogl);
         cy.Draw();
-
     }
-
 }
 
 //渲染引擎接口
@@ -29,23 +27,26 @@ public abstract class RenderEngine {
 public class DirectX : RenderEngine {
     public override void Render(string renderName)
     {
+        //把方法抽象出来
         DirectXRender(renderName);
     }
-
     void DirectXRender(string renderName) {
         Debug.Log("通过DirectX来渲染："+renderName);
     }
 }
+
 //OpenGL引擎
 public class OpenGL : RenderEngine {
     public override void Render(string renderName)
     {
+        //把方法抽象出来
         OpenGLRender(renderName);
     }
     void OpenGLRender(string renderName) {
         Debug.Log("通过OpenGL来渲染：" + renderName);
     }
 }
+
 //让调用者来选择渲染引擎
 public abstract class IShape {
     public RenderEngine m_renderEngine = null;
